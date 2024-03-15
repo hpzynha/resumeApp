@@ -8,23 +8,37 @@
 import SwiftUI
 import SwiftData
 
+extension Color {
+    init(hex: String, alpha: Double = 1.0){
+        var hexString = hex.trimmingCharacters(in: .whitespacesAndNewlines)
+        hexString = hexString.replacingOccurrences(of: "#", with: "")
+        
+        var rgb: UInt64 = 0
+        Scanner(string: hexString).scanHexInt64(&rgb)
+        let red = Double((rgb >> 16) & 0xff) / 255.0
+        let green = Double((rgb >> 8) & 0xff) / 255.0
+        let blue = Double(rgb & 0xff) / 255.0
+        self.init(.sRGB , red: red, green: green, blue: blue, opacity: alpha)
+    }
+}
+
 struct ContentView: View {
     var body: some View {
+        
         VStack(alignment: .leading, spacing: 0) {
-            
             
             HStack{
                 Image("LariProfile")
                     .resizable()
                     .frame(width: 90, height: 90)
                     .clipShape(/*@START_MENU_TOKEN@*/Circle()/*@END_MENU_TOKEN@*/)
-                  
+                
                 
                 VStack{
                     Text("Larissa Rocha")
                         .font(.largeTitle)
                         .bold()
-                        .foregroundColor(.brown)
+                        .foregroundColor(Color(hex: "78290F"))
                         .padding(.top)
                     Text("Tech enthusiast")
                         .foregroundStyle(.secondary)
@@ -35,7 +49,7 @@ struct ContentView: View {
                 Text("Skills")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .bold()
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color(hex: "ff7d00"))
                 Rectangle()
                     .foregroundColor(.orange)
                     .frame(height: 1)
@@ -44,6 +58,7 @@ struct ContentView: View {
                     Text("App Developer")
                         .bold()
                         .font(.title3)
+                        .foregroundColor(Color(hex: "78290F"))
                     Spacer()
                 }
                 Text("Swift & Flutter")
@@ -57,15 +72,16 @@ struct ContentView: View {
                 Text("Work Experience")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .bold()
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color(hex: "ff7d00"))
                 Rectangle()
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color(hex: "ff7d00"))
                     .frame(height: 1)
                     .padding(.bottom)
                 HStack {
                     Text("LIBERTY Steel Group")
                         .bold()
                         .font(.title3)
+                        .foregroundColor(Color(hex: "78290F"))
                     Spacer()
                     Text("2023 - Present")
                 }
@@ -77,6 +93,7 @@ struct ContentView: View {
                     Text("FPF Tech")
                         .bold()
                         .font(.title3)
+                        .foregroundColor(Color(hex: "78290F"))
                     Spacer()
                     Text("2021 - 2022")
                 }
@@ -93,16 +110,17 @@ struct ContentView: View {
                 Text("Education")
                     .font(.title)
                     .bold()
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color(hex: "ff7d00"))
                 Rectangle()
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color(hex: "ff7d00"))
                     .frame(height: 1)
                     .padding(.bottom)
-                    
+                
                 HStack{
                     Text("Bachelor's Degree")
                         .bold()
                         .font(.title3)
+                        .foregroundColor(Color(hex: "78290F"))
                     Spacer()
                     Text("2009 - 2014")
                 }
@@ -114,6 +132,7 @@ struct ContentView: View {
                     Text("Posgraduate Degree")
                         .bold()
                         .font(.title3)
+                        .foregroundColor(Color(hex: "78290F"))
                     Spacer()
                     Text("2015 - 2016")
                 }
@@ -129,9 +148,9 @@ struct ContentView: View {
                 Text("Interest")
                     .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
                     .bold()
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color(hex: "ff7d00"))
                 Rectangle()
-                    .foregroundColor(.orange)
+                    .foregroundColor(Color(hex: "ff7d00"))
                     .frame(height: 1)
                     .padding(.bottom)
             }
@@ -143,6 +162,7 @@ struct ContentView: View {
                         .font(.system(size: 70))
                     Text("Reading books")
                         .bold()
+                        .foregroundColor(Color(hex: "78290F"))
                 })
                 Spacer()
                 VStack(content: {
@@ -150,6 +170,7 @@ struct ContentView: View {
                         .font(.system(size: 70))
                     Text("Coding")
                         .bold()
+                        .foregroundColor(Color(hex: "78290F"))
                 })
                 Spacer()
                 VStack(content: {
@@ -157,13 +178,17 @@ struct ContentView: View {
                         .font(.system(size: 70))
                     Text("Traveling")
                         .bold()
+                        .foregroundColor(Color(hex: "78290F"))
                 })
                 Spacer()
             })
             
         }
+        
         .padding()
+        .background(Color(hex: "FFECD1"))
     }
+    
     
 }
 
